@@ -38,7 +38,7 @@ void adicionar_pacientes(tabela_hash *tabela, FILE* arquivo){
 
   while (fgets(linha, sizeof(linha), arquivo)) {
     No *novo_no = (No *)malloc(sizeof(No));
-    sscanf(linha, "%6[^;];%19[^;];%d;%1[^;];%d;%d;%d", novo_no->id, novo_no->nome, &novo_no->idade, novo_no->sexo, &novo_no->cpf, &novo_no->prioridade, &novo_no->atendido);
+    sscanf(linha, "%6[^;];%19[^;];%d;%1[^;];%11[^;];%d;%d", novo_no->id, novo_no->nome, &novo_no->idade, novo_no->sexo, novo_no->cpf, &novo_no->prioridade, &novo_no->atendido);
     novo_no->proximo = NULL;
     inserir_na_tabela(tabela,novo_no);
   }
@@ -97,7 +97,7 @@ void imprimir_tabela(tabela_hash *tabela) {
         printf("Índice %d:\n", i);
         No *paciente_atual = tabela->tabela[i];
         while (paciente_atual != NULL) {
-            printf("  ID: %s, Nome: %s, Idade: %d, Sexo: %s, CPF: %d, Prioridade: %d, Atendido: %d\n",
+            printf("  ID: %s, Nome: %s, Idade: %d, Sexo: %s, CPF: %s, Prioridade: %d, Atendido: %d\n",
                    paciente_atual->id, paciente_atual->nome, paciente_atual->idade, paciente_atual->sexo,
                    paciente_atual->cpf, paciente_atual->prioridade, paciente_atual->atendido);
             paciente_atual = paciente_atual->proximo;

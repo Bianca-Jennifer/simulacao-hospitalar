@@ -20,7 +20,7 @@ void insere_inicio(Deque *deque, No_d* no_tabela){
     strcpy(no_deque->nome, no_tabela->nome);
     no_deque->idade = no_tabela->idade;
     strcpy(no_deque->sexo, no_tabela->sexo);
-    no_deque->cpf = no_tabela->cpf;
+    strcpy(no_deque->cpf, no_tabela->cpf);
     no_deque->prioridade = no_tabela->prioridade;
     no_deque->atendido = no_tabela->atendido;
 
@@ -53,7 +53,7 @@ void insere_final(Deque *deque, No_d* no_tabela){
     strcpy(no_deque->nome, no_tabela->nome);
     no_deque->idade = no_tabela->idade;
     strcpy(no_deque->sexo, no_tabela->sexo);
-    no_deque->cpf = no_tabela->cpf;
+    strcpy(no_deque->cpf, no_tabela->cpf);
     no_deque->prioridade = no_tabela->prioridade;
     no_deque->atendido = no_tabela->atendido;
 
@@ -88,7 +88,7 @@ void imprime_deque(Deque *deque){
 
     printf("Deque:\n");
     while(paciente_atual != NULL){
-         printf("  ID: %s, Nome: %s, Idade: %d, Sexo: %s, CPF: %d, Prioridade: %d, Atendido: %d\n",
+         printf("  ID: %s, Nome: %s, Idade: %d, Sexo: %s, CPF: %s, Prioridade: %d, Atendido: %d\n",
                    paciente_atual->id, paciente_atual->nome, paciente_atual->idade, paciente_atual->sexo,
                    paciente_atual->cpf, paciente_atual->prioridade, paciente_atual->atendido);
             paciente_atual = paciente_atual->proximo;
@@ -107,7 +107,7 @@ No_d* converter_para_deque(No *no) {
     strcpy(novo->nome, no->nome);
     novo->idade = no->idade;
     strcpy(novo->sexo, no->sexo);
-    novo->cpf = no->cpf;
+    strcpy(novo->cpf, no->cpf);
     novo->prioridade = no->prioridade;
     novo->atendido = no->atendido;
     novo->proximo = NULL;
