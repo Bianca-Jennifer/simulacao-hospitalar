@@ -10,7 +10,7 @@ typedef struct No {
   char nome[20];
   int idade;
   char sexo[2];
-  int cpf;
+  char cpf[12];
   int prioridade;
   int atendido;
   struct No *proximo;
