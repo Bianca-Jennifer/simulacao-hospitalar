@@ -1,0 +1,34 @@
+#ifndef DEQUE_H
+#define DEQUE_H
+
+#include <stdlib.h>
+#include "pacientes_tabela.h"
+
+typedef struct No_d {
+  char id[7];
+  char nome[20];
+  int idade;
+  char sexo[2];
+  int cpf;
+  int prioridade;
+  int atendido;
+  struct No_d *proximo;
+  struct No_d *anterior;
+} No_d;
+
+typedef struct Deque {
+    No_d *inicio;
+    No_d *final;
+    int tamanho;
+} Deque;
+
+void inicia_deque(Deque *d);
+void insere_inicio(Deque *deque, No_d* no_tabela);
+void insere_final(Deque *deque, No_d* novo_no);
+void remove_inicio(Deque *deque, No_d* novo_no);
+void remove_final(Deque *deque, No_d* novo_no);
+int esta_vazio(Deque *deque);
+void imprime_deque(Deque *deque);
+No_d* converter_para_deque(No *no);
+
+#endif
