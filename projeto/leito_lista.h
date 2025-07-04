@@ -1,7 +1,7 @@
 #ifndef LEITO_LISTA_H
 #define LEITO_LISTA_H
 
-#define MAX 50
+#define MAX 10
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,7 +19,7 @@ typedef struct Leito{
 }Leito;
 
 typedef struct Lista_de_leitos{ 
-    Leito leitos[10];
+    Leito leitos[MAX];
     int quant_elem;
 } Lista_de_leitos;
 
