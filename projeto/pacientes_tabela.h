@@ -20,11 +20,19 @@ typedef struct tabela_hash {
   No *tabela[TAMANHO];
 } tabela_hash;
 
+typedef struct Deque Deque;
+
 void inicializar_tabela(tabela_hash *tabela);
 int id_para_inteiro(char *id);
 int funcao_hash(int id);
 void inserir_na_tabela(tabela_hash *tabela, No* novo_no);
 void adicionar_pacientes(tabela_hash *tabela, FILE* arquivo);
+void inserir_no_deque(No *tabela, Deque *deque);
+void sortear(tabela_hash *tabela, Deque *deque);
+int sortear_numero();
+
+
+
 void imprimir_tabela(tabela_hash *tabela);
 
 #endif 
