@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "stdlib.h": "c",
+        "pacientes_tabela.h": "c"
+    }
+}

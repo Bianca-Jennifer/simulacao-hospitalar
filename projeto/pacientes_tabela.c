@@ -1,4 +1,5 @@
 #include "pacientes_tabela.h"
+#include "deque.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -30,7 +31,6 @@ void inserir_na_tabela(tabela_hash *tabela, No* novo_no){
   }
 }
 
-
 void adicionar_pacientes(tabela_hash *tabela, FILE* arquivo){
 
   char linha[256];
@@ -44,6 +44,53 @@ void adicionar_pacientes(tabela_hash *tabela, FILE* arquivo){
   }
 }
 
+void inserir_no_deque(No *tabela, Deque *deque){
+  No_d *no_deque = converter_para_deque(tabela);
+  if (no_deque == NULL) return;
+
+  if(no_deque->prioridade <= 3){
+    insere_final(deque, no_deque);
+  } else if(no_deque->prioridade <= 5){
+    insere_inicio(deque, no_deque);
+  }
+
+}
+
+void sortear(tabela_hash *tabela, Deque *deque){
+  if(deque->tamanho == 20){
+    return;
+  }
+
+  int tentativas_max = 100;
+  int tentativas = 0;
+
+  while(tentativas < tentativas_max){
+    int indice = sortear_numero();
+
+    if(tabela->tabela[indice] != NULL){
+      inserir_no_deque(tabela->tabela[indice], deque);
+      return;
+    }
+
+    tentativas++;
+
+    if(deque->tamanho >= 20){
+      return;
+    }
+  }
+
+  for(int i = 0; i < TAMANHO; i++){
+    if(tabela->tabela[i] != NULL){
+      inserir_no_deque(tabela->tabela[i], deque);
+      return;
+    }
+  }
+}
+
+// sorteio entre 0 e 49
+int sortear_numero(){
+  return rand() % 50; 
+}
 
 void imprimir_tabela(tabela_hash *tabela) {
     for (int i = 0; i < TAMANHO; i++) {
