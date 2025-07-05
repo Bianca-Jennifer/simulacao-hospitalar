@@ -79,6 +79,8 @@ void sortear(tabela_hash *tabela, Deque *deque){
     if(deque->tamanho >= 20){
       return;
     }
+
+    
   }
 
   for(int i = 0; i < TAMANHO; i++){
@@ -87,6 +89,7 @@ void sortear(tabela_hash *tabela, Deque *deque){
       return;
     }
   }
+
 }
 
 // sorteio entre 0 e 49

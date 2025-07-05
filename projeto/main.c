@@ -23,15 +23,26 @@ int main() {
     inicia_deque(&deque);
     sortear(&tabela, &deque);
     sortear(&tabela, &deque);
+    sortear(&tabela, &deque);
     printf("\nSorteado\n");
+    imprime_deque(&deque);
+    printf("\n");
+
+    imprimir_tabela(&tabela);
+
+    remove_inicio(&deque);
+    printf("\nRemovido\n");
+    imprime_deque(&deque);
+    remove_final(&deque);
+    printf("\nRemovido\n");
     imprime_deque(&deque);
     printf("\n");
 
     
     //Verificando funcionamento da lista sequencial
-    Lista_de_leitos l;
+    /*Lista_de_leitos l;
     inicializa_lista(&l);
-     printf("Lista inicializada\n");
+    printf("Lista inicializada\n");
     printf("QUANTIDADE: %d\n", tamanho(&l));
     printf("Adicionando...\n");
     inserir_leito(&l,deque.inicio);
@@ -41,9 +52,9 @@ int main() {
 
     printf("Removendo primeiro elemento...\n");
     remover_leito(&l,l.leitos[0]);
-    exibe_lista(&l);
+    exibe_lista(&l);*/
 
-    imprimir_tabela(&tabela);
+    //imprimir_tabela(&tabela);
 
     fclose(arquivo);
     return 0;

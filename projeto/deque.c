@@ -74,6 +74,44 @@ void insere_final(Deque *deque, No_d* no_tabela){
     no_deque->atendido++;
 }
 
+void remove_inicio(Deque *deque) {
+    if(deque->inicio == NULL){
+        printf("Deque vazio!\n");
+        return;
+    }
+
+    No_d *temp = deque->inicio;
+    deque->inicio = deque->inicio->proximo;
+
+    if(deque->inicio == NULL){
+        deque->final = NULL;
+    }else{
+        deque->inicio->anterior = NULL;
+    }
+
+    free(temp);
+    deque->tamanho--;
+}
+
+void remove_final(Deque *deque){
+    if(deque->inicio == NULL){
+        printf("Deque vazio!\n");
+        return;
+    }
+
+    No_d *temp = deque->final;
+    deque->final = deque->final->anterior;
+
+    if(deque->final == NULL){
+        deque->inicio = NULL;
+    }else{
+        deque->final->proximo = NULL;
+    }
+
+    free(temp);
+    deque->tamanho--;
+}
+
 int esta_vazio(Deque *deque){
     return deque->tamanho == 0;
 }
