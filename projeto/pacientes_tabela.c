@@ -70,6 +70,9 @@ void sortear(tabela_hash *tabela, Deque *deque){
     int indice = sortear_numero();
 
     if(tabela->tabela[indice] != NULL){
+      if(tabela->tabela[indice]->atendido == 1){
+        continue;;
+      }
       inserir_no_deque(tabela->tabela[indice], deque);
       return;
     }

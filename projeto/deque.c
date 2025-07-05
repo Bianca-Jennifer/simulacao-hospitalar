@@ -74,13 +74,14 @@ void insere_final(Deque *deque, No_d* no_tabela){
     no_deque->atendido++;
 }
 
-void remove_inicio(Deque *deque) {
+int remove_inicio(Deque *deque, No_d* paciente_removido) {
     if(deque->inicio == NULL){
         printf("Deque vazio!\n");
-        return;
+        return 1;
     }
 
     No_d *temp = deque->inicio;
+    *paciente_removido = *temp;
     deque->inicio = deque->inicio->proximo;
 
     if(deque->inicio == NULL){
@@ -91,15 +92,18 @@ void remove_inicio(Deque *deque) {
 
     free(temp);
     deque->tamanho--;
+
+    return 0;
 }
 
-void remove_final(Deque *deque){
+int remove_final(Deque *deque, No_d* paciente_removido){
     if(deque->inicio == NULL){
         printf("Deque vazio!\n");
-        return;
+        return 1;
     }
 
     No_d *temp = deque->final;
+    *paciente_removido = *temp;
     deque->final = deque->final->anterior;
 
     if(deque->final == NULL){
@@ -110,6 +114,26 @@ void remove_final(Deque *deque){
 
     free(temp);
     deque->tamanho--;
+
+    return 0;
+}
+
+int pega_prioridade_inicio(Deque *deque){
+    if(deque->inicio == NULL){
+        printf("Deque vazio!\n");
+        return -1;
+    }
+
+    return deque->inicio->prioridade;
+}
+
+int pega_prioridade_final(Deque *deque){
+    if(deque->final == NULL){
+        printf("Deque vazio!\n");
+        return -1;
+    }
+
+    return deque->final->prioridade;
 }
 
 int esta_vazio(Deque *deque){

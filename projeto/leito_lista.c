@@ -42,15 +42,31 @@ Leito criar_leito(No_d *no) {
     return leito;
 }
 
-bool inserir_leito(Lista_de_leitos *l, No_d *no) {
+bool inserir_leito(Lista_de_leitos *l, Deque *deque) {
     if (l->quant_elem == MAX) {
         return false; 
     }
 
-    Leito novo_leito = criar_leito(no);
+    int a = pega_prioridade_inicio(deque);
+    int b = pega_prioridade_final(deque);
+
+    No_d paciente_removido;
+
+    if(a >= b){
+        if(remove_inicio(deque, &paciente_removido) != 0){
+            return false;
+        }
+    }else{
+        if(remove_inicio(deque, &paciente_removido) != 0){
+            return false;
+        }
+    }
+    
+    Leito novo_leito = criar_leito(&paciente_removido);
 
     l->leitos[l->quant_elem] = novo_leito; 
-    l->quant_elem++;             
+    l->quant_elem++;
+
     return true;
 }
 
