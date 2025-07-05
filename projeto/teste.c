@@ -1,15 +1,4 @@
-#include <stdio.h>
-
-int sortear_numero(){
-  srand(time(NULL));
-  return rand() % 50; 
-}
-
-int main(){
-
-    int numero = sortear_numero();
-
-    printf("%d\n", numero);
-
-    return 0;
-}
+printf("  ID: %s, Nome: %s, Idade: %d, Sexo: %s, CPF: %s, Prioridade: %d, Atendido: %d\n",
+                   topo->id, topo->nome, topo->idade, topo->sexo,
+                   topo->cpf, topo->prioridade, topo->atendido);
+            topo = topo->proximo;

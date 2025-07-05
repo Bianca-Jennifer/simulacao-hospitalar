@@ -1,4 +1,5 @@
 #include "leito_lista.h"
+#include "pilha.h"
 #include "deque.h"
 #include <string.h>
 
@@ -92,7 +93,7 @@ int sortear_indice(Lista_de_leitos *l){
 }
 
 
-bool remover_leito(Lista_de_leitos *l){
+bool remover_leito(Lista_de_leitos *l, pilha **topo){
     int quantidade = sortear_quantidade(l);
     printf("Quantidade de pacientes que serão removidos:%d\n", quantidade);
 
@@ -103,10 +104,12 @@ bool remover_leito(Lista_de_leitos *l){
 
         if(pos == -1){
             return false;
-        }    
+        }
+        
+        push(topo, &l->leitos[pos]);
+        
         for(j=pos; j < l->quant_elem-1; j++){
             l->leitos[j] = l->leitos[j+1];
-        
         }
         l->quant_elem--;
     }

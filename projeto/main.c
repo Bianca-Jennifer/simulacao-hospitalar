@@ -1,6 +1,7 @@
 #include "pacientes_tabela.h"
 #include "deque.h"
 #include "leito_lista.h"
+#include "pilha.h"
 #include <stdio.h>
 #include <time.h>
 
@@ -27,35 +28,22 @@ int main() {
     printf("\nSorteado\n");
     imprime_deque(&deque);
     printf("\n");
-    imprimir_tabela(&tabela);
-
-
-    //remove_inicio(&deque);
-    //printf("\nRemovido\n");
-    //imprime_deque(&deque);
-    //remove_final(&deque);
-    //printf("\nRemovido\n");
-    imprime_deque(&deque);
-    printf("\n");
 
     Lista_de_leitos l;
     inicializa_lista(&l);
+    printf("Sorteado paciente para o leito!\n");
     inserir_leito(&l,&deque);
-    printf("-----------\n\n");
+    printf("Pacientes no leito:\n");
     exibe_lista(&l);
     imprime_deque(&deque);
     printf("-------------\n");
 
-    remover_leito(&l);
+    pilha *pilha = NULL;
+
+    remover_leito(&l, &pilha);
     printf("----------\n");
     exibe_lista(&l);
-
-    /*printf("Removendo primeiro elemento...\n");
-    remover_leito(&l,l.leitos[0]);
-    exibe_lista(&l);*/
-
-
-    //imprimir_tabela(&tabela);
+    imprimir_pilha(pilha);
 
     fclose(arquivo);
     return 0;

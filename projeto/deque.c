@@ -12,7 +12,7 @@ void insere_inicio(Deque *deque, No_d* no_tabela){
     No_d *no_deque = (No_d *)malloc(sizeof(No_d));
 
     if (no_deque == NULL) {
-        printf("Erro de alocação\n");
+        printf("ERRO!\n");
         return;
     }
 
