@@ -10,7 +10,7 @@
 
 typedef struct Leito{
   char id[7];
-  char nome[20];
+  char nome[50];
   int idade;
   char sexo[2];
   char cpf[12];

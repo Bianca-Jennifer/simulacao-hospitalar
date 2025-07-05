@@ -38,7 +38,7 @@ void adicionar_pacientes(tabela_hash *tabela, FILE* arquivo){
 
   while (fgets(linha, sizeof(linha), arquivo)) {
     No *novo_no = (No *)malloc(sizeof(No));
-    sscanf(linha, "%6[^;];%19[^;];%d;%1[^;];%11[^;];%d;%d", novo_no->id, novo_no->nome, &novo_no->idade, novo_no->sexo, novo_no->cpf, &novo_no->prioridade, &novo_no->atendido);
+    sscanf(linha, "%6[^;];%49[^;];%d;%1[^;];%11[^;];%d;%d", novo_no->id, novo_no->nome, &novo_no->idade, novo_no->sexo, novo_no->cpf, &novo_no->prioridade, &novo_no->atendido);
     novo_no->proximo = NULL;
     inserir_na_tabela(tabela,novo_no);
   }
