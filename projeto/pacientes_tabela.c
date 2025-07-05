@@ -50,8 +50,10 @@ void inserir_no_deque(No *tabela, Deque *deque){
 
   if(no_deque->prioridade <= 3){
     insere_final(deque, no_deque);
+    tabela->atendido++;
   } else if(no_deque->prioridade <= 5){
     insere_inicio(deque, no_deque);
+    tabela->atendido++;
   }
 
 }
