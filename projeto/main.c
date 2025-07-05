@@ -31,16 +31,24 @@ int main() {
 
 
     //remove_inicio(&deque);
-    printf("\nRemovido\n");
-    imprime_deque(&deque);
+    //printf("\nRemovido\n");
+    //imprime_deque(&deque);
     //remove_final(&deque);
-    printf("\nRemovido\n");
+    //printf("\nRemovido\n");
     imprime_deque(&deque);
     printf("\n");
 
+    Lista_de_leitos l;
+    inicializa_lista(&l);
+    inserir_leito(&l,&deque);
+    printf("-----------\n\n");
+    exibe_lista(&l);
+    imprime_deque(&deque);
+    printf("-------------\n");
 
-   
-
+    remover_leito(&l);
+    printf("----------\n");
+    exibe_lista(&l);
 
     /*printf("Removendo primeiro elemento...\n");
     remover_leito(&l,l.leitos[0]);
