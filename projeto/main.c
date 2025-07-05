@@ -43,6 +43,8 @@ int main() {
     remover_leito(&l,l.leitos[0]);
     exibe_lista(&l);
 
+    imprimir_tabela(&tabela);
+
     fclose(arquivo);
     return 0;
 }
