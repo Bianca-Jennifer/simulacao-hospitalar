@@ -28,8 +28,8 @@ int tamanho(Lista_de_leitos *l);
 int busca(Lista_de_leitos *l, Leito leito_verificado);
 void exibe_lista(Lista_de_leitos *l);
 Leito criar_leito(No_d *no); 
-bool inserir_leito(Lista_de_leitos *l, No_d *no);
-int sortear_quantidade(Lista_de_leitos *l);
-int sortear_indice(Lista_de_leitos *l);
-bool remover_leito(Lista_de_leitos *l);
+
+bool inserir_leito(Lista_de_leitos *l, Deque *deque);
+bool remover_leito(Lista_de_leitos *l, Leito leito);
+
 #endif 

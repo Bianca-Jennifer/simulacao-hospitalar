@@ -25,8 +25,10 @@ typedef struct Deque {
 void inicia_deque(Deque *d);
 void insere_inicio(Deque *deque, No_d* no_tabela);
 void insere_final(Deque *deque, No_d* no_tabela);
-void remove_inicio(Deque *deque);
-void remove_final(Deque *deque);
+int remove_inicio(Deque *deque, No_d* paciente_removido);
+int remove_final(Deque *deque, No_d* paciente_removido);
+int pega_prioridade_inicio(Deque *deque);
+int pega_prioridade_final(Deque *deque);
 int esta_vazio(Deque *deque);
 void imprime_deque(Deque *deque);
 No_d* converter_para_deque(No *no);
