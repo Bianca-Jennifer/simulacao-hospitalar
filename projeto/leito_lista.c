@@ -70,17 +70,46 @@ bool inserir_leito(Lista_de_leitos *l, Deque *deque) {
     return true;
 }
 
-bool remover_leito(Lista_de_leitos *l, Leito leito){
-    int pos, j;
-    pos = busca(l, leito);
+//Sortear a quantidade de pacientes que vão receber alta
+int sortear_quantidade(Lista_de_leitos *l){
+    if(l->quant_elem == 0)
+        return 0;
 
-    if(pos == -1){
-        return false;
-    }    
-    for(j=pos; j < l->quant_elem-1; j++){
-        l->leitos[j] = l->leitos[j+1];
-        l->quant_elem--;
-        return true; 
+    if(l->quant_elem <= 4){
+        return (rand() % 1) + 1; //Retorna apenas 1
+    }else{
+        return (rand() % 3) + 1; //Retorna 1,2 ou 3(dps mudar pra poder retornar 0 também)
     }
+}
+
+// sorteio entre 0 e a quantidade de elementos na lista
+int sortear_indice(Lista_de_leitos *l){
+    if (l->quant_elem == 0){ 
+        return -1;
+    }    
+
+    return rand() % l->quant_elem; 
+}
+
+
+bool remover_leito(Lista_de_leitos *l){
+    int quantidade = sortear_quantidade(l);
+    printf("Quantidade de pacientes que serão removidos:%d\n", quantidade);
+
+    for(int cont = 0; cont < quantidade; cont++) {
+        int pos, j;
+        pos = sortear_indice(l);
+        printf("Elemento sorteado: %s\n", l->leitos[pos].nome);
+
+        if(pos == -1){
+            return false;
+        }    
+        for(j=pos; j < l->quant_elem-1; j++){
+            l->leitos[j] = l->leitos[j+1];
+        
+        }
+        l->quant_elem--;
+    }
+    return true; 
 }
 
