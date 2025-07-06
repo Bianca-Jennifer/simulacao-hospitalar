@@ -42,7 +42,7 @@ int main() {
 
     while(contador_pilha <= 50){ //Enquanto não tem 50 pacientes com alta,executa os ciclos
         printf("\n");
-        printf("Ciclo %d\n", quantidade_de_ciclos);
+        printf("[Ciclo %d\n]", quantidade_de_ciclos);
         quantidade_de_ciclos++;
 
         if(contador_pilha == 50) {
@@ -91,7 +91,7 @@ int main() {
             imprime_deque(&deque);
         }
         printf("\n\n");
-        printf("Resultado - leitos: %d - deque: %d - nao atendidos: %d - altas: %d\n", l.quant_elem, deque.tamanho, tabela.quant_de_nao_atendidos, contador_pilha);
+        printf("Resumo - Internados nos leitos: %d - Lista de espera: %d - Aguardando atendimento: %d - Altas: %d\n", l.quant_elem, deque.tamanho, tabela.quant_de_nao_atendidos, contador_pilha);
         SLEEP(2);
     }
 
