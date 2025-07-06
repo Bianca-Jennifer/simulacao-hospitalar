@@ -5,6 +5,16 @@
 #include <stdio.h>
 #include <time.h>
 
+extern int contador_pilha;
+
+#ifdef _WIN32
+    #include <windows.h>
+    #define SLEEP(seconds) Sleep((seconds) * 1000)  // milissegundos no Windows
+#else
+    #include <unistd.h>
+    #define SLEEP(seconds) sleep(seconds)          // segundos no Linux
+#endif
+
 int main() {
     srand(time(NULL));
 
@@ -16,36 +26,75 @@ int main() {
 
     tabela_hash tabela;
     inicializar_tabela(&tabela);
-
     adicionar_pacientes(&tabela, arquivo);
-    imprimir_tabela(&tabela);
+
 
     Deque deque;
     inicia_deque(&deque);
-    sortear(&tabela, &deque);
-    sortear(&tabela, &deque);
-    sortear(&tabela, &deque);
-    printf("\nSorteado\n");
-    imprime_deque(&deque);
-    printf("\n");
 
     Lista_de_leitos l;
     inicializa_lista(&l);
-    printf("Sorteado paciente para o leito!\n");
-    inserir_leito(&l,&deque);
-    printf("Pacientes no leito:\n");
-    exibe_lista(&l);
-    imprime_deque(&deque);
-    printf("-------------\n");
 
     pilha *pilha = NULL;
 
-    remover_leito(&l, &pilha);
-    printf("----------\n");
-    exibe_lista(&l);
-    imprimir_pilha(pilha);
-
     fclose(arquivo);
+    int quantidade_de_ciclos = 1;
+
+    while(contador_pilha <= 50){ //Enquanto não tem 50 pacientes com alta,executa os ciclos
+        printf("\n");
+        printf("[Ciclo %d\n]", quantidade_de_ciclos);
+        quantidade_de_ciclos++;
+
+        if(contador_pilha == 50) {
+            imprimir_pilha(pilha);
+            break;//Só pra exibir o resultado final e sair do loop
+        }
+
+        imprimir_pilha(pilha);
+        if(l.quant_elem != 0){ //Verifica se tem paciente no leito para receber alta(há sorteio da quan. e quem)
+            remover_leito(&l,&pilha);
+            
+        }
+
+        if(l.quant_elem != 10){//Verifica se tem espaço vazio nos leitos para receber mais no deque
+            int quant_de_espacos_vazios_lista = 10 - l.quant_elem;
+            int pacientes_do_deque = deque.tamanho;
+            int pacientes_para_transferir_para_leito;
+
+            if (quant_de_espacos_vazios_lista < pacientes_do_deque) {
+                pacientes_para_transferir_para_leito = quant_de_espacos_vazios_lista;
+            } else {
+                pacientes_para_transferir_para_leito = pacientes_do_deque;
+            }
+
+            for(int cont1 = 0; cont1 < pacientes_para_transferir_para_leito; cont1++){
+                inserir_leito(&l,&deque);
+            }
+           
+            exibe_lista(&l);
+        }
+
+        if(deque.tamanho != 20 && tabela.quant_de_nao_atendidos != 0){//Verifica se há espaço vazio no deque e pacientes ainda não atendidos para receber da tabela 
+            int espacos_vazios_deque = 20 - deque.tamanho;
+            int maximo_para_enviar_ao_deque;
+
+            if(espacos_vazios_deque < tabela.quant_de_nao_atendidos) {
+                maximo_para_enviar_ao_deque = espacos_vazios_deque;
+            }else{
+                maximo_para_enviar_ao_deque = tabela.quant_de_nao_atendidos;
+            }
+
+            for(int cont2 = 0; cont2 < maximo_para_enviar_ao_deque; cont2++){
+                sortear(&tabela, &deque);
+            }
+
+            imprime_deque(&deque);
+        }
+        printf("\n\n");
+        printf("Resumo - Internados nos leitos: %d - Lista de espera: %d - Aguardando atendimento: %d - Altas: %d\n", l.quant_elem, deque.tamanho, tabela.quant_de_nao_atendidos, contador_pilha);
+        SLEEP(2);
+    }
+
     return 0;
 }
 

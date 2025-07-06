@@ -32,6 +32,6 @@ Leito criar_leito(No_d *no);
 bool inserir_leito(Lista_de_leitos *l, Deque *deque);
 int sortear_quantidade(Lista_de_leitos *l);
 int sortear_indice(Lista_de_leitos *l);
-bool remover_leito(Lista_de_leitos *l, pilha **topo);
+int remover_leito(Lista_de_leitos *l, pilha **topo);
 
 #endif 

@@ -18,6 +18,7 @@ typedef struct No {
 
 typedef struct tabela_hash {
   No *tabela[TAMANHO];
+  int quant_de_nao_atendidos;
 } tabela_hash;
 
 typedef struct Deque Deque;
@@ -27,7 +28,7 @@ int id_para_inteiro(char *id);
 int funcao_hash(int id);
 void inserir_na_tabela(tabela_hash *tabela, No* novo_no);
 void adicionar_pacientes(tabela_hash *tabela, FILE* arquivo);
-void inserir_no_deque(No *tabela, Deque *deque);
+void inserir_no_deque(tabela_hash *tabela_geral,No *tabela, Deque *deque);
 void sortear(tabela_hash *tabela, Deque *deque);
 int sortear_numero();
 

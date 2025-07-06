@@ -8,6 +8,7 @@ void inicializar_tabela(tabela_hash *tabela){
     for(int i = 0; i < TAMANHO; i++){
         tabela->tabela[i] = NULL;
     }
+    tabela->quant_de_nao_atendidos = 50;
 }
 
 //Processo de preencher
@@ -44,9 +45,11 @@ void adicionar_pacientes(tabela_hash *tabela, FILE* arquivo){
   }
 }
 
-void inserir_no_deque(No *tabela, Deque *deque){
+void inserir_no_deque(tabela_hash *tabela_geral, No *tabela, Deque *deque){
   No_d *no_deque = converter_para_deque(tabela);
   if (no_deque == NULL) return;
+
+  tabela_geral->quant_de_nao_atendidos--;
 
   if(no_deque->prioridade <= 3){
     insere_final(deque, no_deque);
@@ -73,7 +76,7 @@ void sortear(tabela_hash *tabela, Deque *deque){
       if(tabela->tabela[indice]->atendido == 1){
         continue;;
       }
-      inserir_no_deque(tabela->tabela[indice], deque);
+      inserir_no_deque(tabela,tabela->tabela[indice], deque);
       return;
     }
 
@@ -88,7 +91,7 @@ void sortear(tabela_hash *tabela, Deque *deque){
 
   for(int i = 0; i < TAMANHO; i++){
     if(tabela->tabela[i] != NULL){
-      inserir_no_deque(tabela->tabela[i], deque);
+      inserir_no_deque(tabela,tabela->tabela[i], deque);
       return;
     }
   }

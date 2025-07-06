@@ -2,6 +2,8 @@
 #include "leito_lista.h"
 #include <string.h>
 
+int contador_pilha = 0; // variável global
+
 int esta_vazia(pilha *topo){
     return topo == NULL;
 }
@@ -24,6 +26,7 @@ void push(pilha **topo, Leito *paciente){
 
     novo->proximo = *topo;
     *topo = novo;
+    contador_pilha++;
 }
 
 void imprimir_pilha(pilha *topo){
@@ -32,10 +35,13 @@ void imprimir_pilha(pilha *topo){
         return;
     }
 
-    printf("Pacientes que receberam alta:\n");
+    //printf("Pacientes que receberam alta:\n");
+    int cont = 1;
     while(topo != NULL){
-        printf("ID: %s, Nome: %s, Idade: %d, Sexo: %s, CPF: %s, Prioridade: %d, Atendido: %d\n",topo->id, topo->nome, topo->idade, topo->sexo, topo->cpf, topo->prioridade, topo->atendido); 
+        printf("%d ALTA    - %s (%s)\n",cont,topo->id, topo->nome);
+        //printf("ID: %s, Nome: %s, Idade: %d, Sexo: %s, CPF: %s, Prioridade: %d, Atendido: %d\n",topo->id, topo->nome, topo->idade, topo->sexo, topo->cpf, topo->prioridade, topo->atendido); 
         topo = topo->proximo;
+        cont++;
     }
 }
 
