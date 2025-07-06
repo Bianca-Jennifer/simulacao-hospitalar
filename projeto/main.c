@@ -19,13 +19,13 @@ extern int contador_pilha;
 int main() {
     srand(time(NULL));
 
-    FILE *arquivo = fopen("pacientes.csv", "r");
+    FILE *arquivo = fopen("pacientes_e_log/pacientes.csv", "r");
     if (arquivo == NULL) {
         perror("Erro ao abrir o arquivo.");
         return 1;
     }
 
-    arquivo_log = fopen("ciclos.log", "a");
+    arquivo_log = fopen("pacientes_e_log/processamento.log", "a");
     if(arquivo_log == NULL){
         perror("Erro ao abrir o arquivo.");
         return 1;

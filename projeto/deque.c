@@ -151,9 +151,6 @@ void imprime_deque(Deque *deque){
 
     //printf("Deque:\n");
     while(paciente_atual != NULL){
-         /*printf("  ID: %s, Nome: %s, Idade: %d, Sexo: %s, CPF: %s, Prioridade: %d, Atendido: %d\n",
-                   paciente_atual->id, paciente_atual->nome, paciente_atual->idade, paciente_atual->sexo,
-                   paciente_atual->cpf, paciente_atual->prioridade, paciente_atual->atendido);*/
         printf("ESPERA    - %s (prioridade %d)\n",paciente_atual->id, paciente_atual->prioridade);  
         fprintf(arquivo_log, "ESPERA    - %s (prioridade %d)\n",paciente_atual->id, paciente_atual->prioridade);  
         paciente_atual = paciente_atual->proximo;

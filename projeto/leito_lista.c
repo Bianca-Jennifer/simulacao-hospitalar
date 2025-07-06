@@ -25,7 +25,6 @@ void exibe_lista(Lista_de_leitos *l){
     int i;
     
     for(int i=0; i < l -> quant_elem; i++){
-        //printf("%s, ", l -> leitos[i].id);
         printf("INTERNADO    - %s (prioridade %d)\n",l->leitos[i].id, l->leitos[i].prioridade);
         fprintf(arquivo_log, "INTERNADO    - %s (prioridade %d)\n",l->leitos[i].id, l->leitos[i].prioridade);
     }
@@ -67,7 +66,6 @@ bool inserir_leito(Lista_de_leitos *l, Deque *deque) {
     
     Leito novo_leito = criar_leito(&paciente_removido);
 
-    //printf("");
     l->leitos[l->quant_elem] = novo_leito; 
     l->quant_elem++;
 
@@ -82,7 +80,7 @@ int sortear_quantidade(Lista_de_leitos *l){
     if(l->quant_elem <= 4){
         return (rand() % 1) + 1; //Retorna apenas 1
     }else{
-        return (rand() % 3) + 1; //Retorna 1,2 ou 3(dps mudar pra poder retornar 0 também)
+        return (rand() % 3) + 1; //Retorna 1,2 ou 3
     }
 }
 
@@ -98,19 +96,16 @@ int sortear_indice(Lista_de_leitos *l){
 
 int remover_leito(Lista_de_leitos *l, pilha **topo){
     int quantidade = sortear_quantidade(l);
-    //printf("Quantidade de pacientes que serão removidos:%d\n", quantidade);
 
     for(int cont = 0; cont < quantidade; cont++) {
         int pos, j;
         pos = sortear_indice(l);
-        //printf("Elemento sorteado: %s\n", l->leitos[pos].nome);
 
         if(pos == -1){
             return -1;
         }
         
         push(topo, &l->leitos[pos]);
-        //printf("ALTA    - %s (%s)\n",l->leitos[pos].id, l->leitos[pos].nome);
         
         for(j=pos; j < l->quant_elem-1; j++){
             l->leitos[j] = l->leitos[j+1];
