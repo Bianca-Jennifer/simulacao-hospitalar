@@ -1,6 +1,7 @@
 #include "leito_lista.h"
 #include "pilha.h"
 #include "deque.h"
+#include "log.h"
 #include <string.h>
 
 void inicializa_lista(Lista_de_leitos *l){
@@ -26,6 +27,7 @@ void exibe_lista(Lista_de_leitos *l){
     for(int i=0; i < l -> quant_elem; i++){
         //printf("%s, ", l -> leitos[i].id);
         printf("INTERNADO    - %s (prioridade %d)\n",l->leitos[i].id, l->leitos[i].prioridade);
+        fprintf(arquivo_log, "INTERNADO    - %s (prioridade %d)\n",l->leitos[i].id, l->leitos[i].prioridade);
     }
 }
 

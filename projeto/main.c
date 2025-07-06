@@ -2,6 +2,7 @@
 #include "deque.h"
 #include "leito_lista.h"
 #include "pilha.h"
+#include "log.h"
 #include <stdio.h>
 #include <time.h>
 
@@ -24,6 +25,12 @@ int main() {
         return 1;
     }
 
+    arquivo_log = fopen("ciclos.log", "a");
+    if(arquivo_log == NULL){
+        perror("Erro ao abrir o arquivo.");
+        return 1;
+    }
+
     tabela_hash tabela;
     inicializar_tabela(&tabela);
     adicionar_pacientes(&tabela, arquivo);
@@ -42,7 +49,8 @@ int main() {
 
     while(contador_pilha <= 50){ //Enquanto não tem 50 pacientes com alta,executa os ciclos
         printf("\n");
-        printf("[Ciclo %d\n]", quantidade_de_ciclos);
+        printf("[Ciclo %d]\n", quantidade_de_ciclos);
+        fprintf(arquivo_log, "[Ciclo %d]\n", quantidade_de_ciclos);
         quantidade_de_ciclos++;
 
         if(contador_pilha == 50) {
@@ -92,10 +100,15 @@ int main() {
         }
         printf("\n\n");
         printf("Resumo - Internados nos leitos: %d - Lista de espera: %d - Aguardando atendimento: %d - Altas: %d\n", l.quant_elem, deque.tamanho, tabela.quant_de_nao_atendidos, contador_pilha);
+        printf("\n\n");
+        fprintf(arquivo_log, "\n\n");
+        fprintf(arquivo_log, "Resumo - Internados nos leitos: %d - Lista de espera: %d - Aguardando atendimento: %d - Altas: %d\n", l.quant_elem, deque.tamanho, tabela.quant_de_nao_atendidos, contador_pilha);
+        fprintf(arquivo_log, "\n\n");
+
         SLEEP(2);
     }
 
+    fclose(arquivo_log);
+
     return 0;
 }
-
-

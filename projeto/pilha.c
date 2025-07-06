@@ -1,5 +1,7 @@
 #include "pilha.h"
 #include "leito_lista.h"
+#include "log.h"
+
 #include <string.h>
 
 int contador_pilha = 0; // variável global
@@ -39,7 +41,7 @@ void imprimir_pilha(pilha *topo){
     int cont = 1;
     while(topo != NULL){
         printf("%d ALTA    - %s (%s)\n",cont,topo->id, topo->nome);
-        //printf("ID: %s, Nome: %s, Idade: %d, Sexo: %s, CPF: %s, Prioridade: %d, Atendido: %d\n",topo->id, topo->nome, topo->idade, topo->sexo, topo->cpf, topo->prioridade, topo->atendido); 
+        fprintf(arquivo_log, "%d ALTA    - %s (%s)\n",cont,topo->id, topo->nome);
         topo = topo->proximo;
         cont++;
     }
