@@ -27,10 +27,9 @@ clean_log:main pacientes_e_log/processamento.log
 
 clean:
 ifeq ($(SISTEMA_OPERACIONAL),Linux)
-	rm -f arquivos_obj/*.o main
+	rm -f  main
 endif
 ifeq ($(SISTEMA_OPERACIONAL),Windows_NT)
-	del /q arquivos_obj\*.o
 	del /q main.exe
 endif
 
